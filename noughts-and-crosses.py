@@ -26,10 +26,38 @@ def display_board(board):
     )
 
 
-# def enter_move(board):
+def enter_move(board):
     # The function accepts the board's current status, asks the user about their move,
     # checks the input, and updates the board according to the user's decision.
+    user = None
 
+    while user == None:
+        try:
+            user = int(input('Your turn:'))
+        except ValueError:
+            user = None
+            print("That's not a number! Please pick a number 1-9")
+        else:
+            if user > 9 or user < 1:
+                user = None
+                print('Invalid number, please pick a number 1-9')
+
+    if user == 1:
+        board[0][0] = 'O'
+    elif user == 2:
+        board[0][1] = 'O'
+    elif user == 3:
+        board[0][2] = 'O'
+    elif user == 4:
+        board[1][0] = 'O'
+    elif user == 6:
+        board[1][2] = 'O'
+    elif user == 7:
+        board[2][0] = 'O'
+    elif user == 8:
+        board[2][1] = 'O'
+    elif user == 9:
+        board[2][2] = 'O'
 
 # def make_list_of_free_fields(board):
     # The function browses the board and builds a list of all the free squares;
