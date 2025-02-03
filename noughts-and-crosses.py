@@ -69,9 +69,8 @@ def make_list_of_free_fields(board):
 def victory_for(board, sign):
     # The function analyzes the board's status in order to check if
     # the player using 'O's or 'X's has won the game
-    for i in range(3):
-        col = [board[j][i] for j in range(3)]
-        board.append(col)
+    col = zip(*board)
+    board.extend(col)
 
     diag_1 = [board[0][0], board[1][1], board[2][2]]
     diag_2 = [board[0][2], board[1][1], board[2][0]]
