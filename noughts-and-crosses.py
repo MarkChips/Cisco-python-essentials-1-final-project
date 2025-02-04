@@ -112,7 +112,7 @@ def main(board):
     """
     The function runs the game. Prints game outcome message to the terminal.
     """
-    while len(make_list_of_free_fields(board)) != 0:
+    while len(make_list_of_free_fields(board)):
         display_board(board)
         enter_move(board)
         if victory_for(board, 'O'):
