@@ -32,6 +32,8 @@ def display_board(board):
 def enter_move(board):
     # The function accepts the board's current status, asks the user about their move,
     # checks the input, and updates the board according to the user's decision.
+    options = make_list_of_free_fields(board)
+    num_options = [board[option[0]][option[1]] for option in options]
     user = None
 
     while user == None:
@@ -41,9 +43,9 @@ def enter_move(board):
             user = None
             print("That's not a number! Please pick a number 1-9")
         else:
-            if user > 9 or user < 1:
+            if user not in num_options:
                 user = None
-                print('Invalid number, please pick a number 1-9')
+                print('Invalid number, please pick a number 1-9 that has not been taken')
 
     if user == 1:
         board[0][0] = 'O'
