@@ -1,3 +1,6 @@
+from random import randrange
+
+
 board = [
     [1, 2, 3],
     [4, 'X', 6],
@@ -84,5 +87,9 @@ def victory_for(board, sign):
     return False
 
 
-# def draw_move(board):
+def draw_move(board):
     # The function draws the computer's move and updates the board.
+    options = make_list_of_free_fields(board)
+    choice = options[randrange(len(options))]
+
+    board[choice[0]][choice[1]] = 'X'
