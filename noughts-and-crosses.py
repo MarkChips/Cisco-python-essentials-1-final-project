@@ -74,7 +74,7 @@ def make_list_of_free_fields(board):
     The function browses the board and builds a list of all the free squares;
     the list consists of tuples, while each tuple is a pair of row and column numbers.
     """
-    return [(row, column) for row in range(3) for column in range(3) if board[row][column] != 'O' and board[row][column] != 'X']
+    return [(row, column) for row in range(3) for column in range(3) if board[row][column] not in ['O', 'X']]
 
 
 def victory_for(board, sign):
