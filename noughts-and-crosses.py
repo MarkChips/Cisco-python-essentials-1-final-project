@@ -38,7 +38,7 @@ def enter_move(board):
 
     while user == None:
         try:
-            user = int(input('Your turn:'))
+            user = int(input('Make your move: '))
         except ValueError:
             user = None
             print("That's not a number! Please pick a number 1-9")
@@ -74,8 +74,9 @@ def make_list_of_free_fields(board):
 def victory_for(board, sign):
     # The function analyzes the board's status in order to check if
     # the player using 'O's or 'X's has won the game
-    col = zip(*board)
-    board.extend(col)
+    for i in range(3):
+        col = [board[j][i] for j in range(3)]
+        board.append(col)
 
     diag_1 = [board[0][0], board[1][1], board[2][2]]
     diag_2 = [board[0][2], board[1][1], board[2][0]]
@@ -95,3 +96,27 @@ def draw_move(board):
     choice = options[randrange(len(options))]
 
     board[choice[0]][choice[1]] = 'X'
+
+
+def main(board):
+    while len(make_list_of_free_fields(board)) != 0:
+        display_board(board)
+        enter_move(board)
+        if victory_for(board, 'O'):
+            break
+        display_board(board)
+        draw_move(board)
+        if victory_for(board, 'X'):
+            break
+
+    display_board(board)
+
+    if len(make_list_of_free_fields(board)) == 0:
+        print("No more moves, it's a draw. 😐")
+    elif victory_for(board, 'O'):
+        print('Winner! 😁')
+    else:
+        print('Loser! 😢')
+
+
+main(board)
