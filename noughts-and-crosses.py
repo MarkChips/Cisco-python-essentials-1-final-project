@@ -113,12 +113,12 @@ def main(board):
 
     display_board(board)
 
-    if len(make_list_of_free_fields(board)) == 0:
-        print("No more moves, it's a draw. 😐")
-    elif victory_for(board, 'O'):
-        print('Winner! 😁')
-    else:
+    if victory_for(board, 'X'):
         print('Loser! 😢')
+    elif len(make_list_of_free_fields(board)) == 0:
+        print("No more moves, it's a draw. 😐")
+    else:
+        print('Winner! 😁')
 
 
 main(board)
