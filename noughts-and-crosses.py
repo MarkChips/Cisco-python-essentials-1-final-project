@@ -51,22 +51,11 @@ def enter_move(board):
                 user = None
                 print('Invalid number, please pick a number 1-9 that has not been taken')
 
-    if user == 1:
-        board[0][0] = 'O'
-    elif user == 2:
-        board[0][1] = 'O'
-    elif user == 3:
-        board[0][2] = 'O'
-    elif user == 4:
-        board[1][0] = 'O'
-    elif user == 6:
-        board[1][2] = 'O'
-    elif user == 7:
-        board[2][0] = 'O'
-    elif user == 8:
-        board[2][1] = 'O'
-    elif user == 9:
-        board[2][2] = 'O'
+    # Adjust user to 0 indexing, and then use floor division and modulo against column length (len(board[0])).
+    # This technique is effective for any matrix shape.
+    row = (user - 1) // 3
+    column = (user - 1) % 3
+    board[row][column] = 'O'
 
 
 def make_list_of_free_fields(board):
