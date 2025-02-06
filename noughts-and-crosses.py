@@ -101,24 +101,26 @@ def main(board):
     """
     The function runs the game. Prints game outcome message to the terminal.
     """
-    while len(make_list_of_free_fields(board)):
-        display_board(board)
-        enter_move(board)
-        if victory_for(board, 'O'):
-            break
-        display_board(board)
-        draw_move(board)
-        if victory_for(board, 'X'):
-            break
-
     display_board(board)
 
-    if victory_for(board, 'X'):
-        print('Loser! 😢')
-    elif len(make_list_of_free_fields(board)) == 0:
-        print("No more moves, it's a draw. 😐")
-    else:
-        print('Winner! 😁')
+    while len(make_list_of_free_fields(board)):
+        enter_move(board)
+        if victory_for(board, 'O'):
+            display_board(board)
+            print('Winner! 😁')
+            return
+
+        display_board(board)
+
+        draw_move(board)
+        if victory_for(board, 'X'):
+            display_board(board)
+            print('Loser! 😢')
+            return
+
+        display_board(board)
+
+    print("No more moves, it's a draw. 😐")
 
 
 main(board)
